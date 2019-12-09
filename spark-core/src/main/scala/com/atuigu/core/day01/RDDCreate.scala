@@ -14,12 +14,14 @@ object RDDCreate {
     def main(args: Array[String]): Unit = {
         val conf: SparkConf = new SparkConf().setMaster("local[2]").setAppName("RDDCreate")
         val sc = new SparkContext(conf)
-        val arr1 = Array(30, 50, 70, 60, 10, 20)
-        val sourceRDD: RDD[Int] = sc.makeRDD(arr1)
+        val arr1: Array[Any] = Array(30, 50, 70, 60, 10, 2.0)
+        val sourceRDD: RDD[Any] = sc.parallelize(arr1)
 //        val sourceRDD: RDD[Int] = sc.parallelize(arr1)
     
-        println(sourceRDD.collect().mkString(","))
-        
+//        println(sourceRDD.collect().mkString(","))
+        println(sourceRDD.collect {
+            case a: Int => a + 10
+        }.collect().toList)
         
         sc.stop()
         
