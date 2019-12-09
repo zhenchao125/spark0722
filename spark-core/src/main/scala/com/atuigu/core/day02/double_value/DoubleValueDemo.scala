@@ -28,7 +28,6 @@ object DoubleValueDemo {
         val rdd3 = rdd1.zipPartitions(rdd2)((it1, it2) => it1.zipAll(it2, 100, 200))
 //        val rdd3 = rdd1.zipPartitions(rdd2)(_.zipAll(_, 100, 200))
         rdd3.collect.foreach(println)
-        
         // 并集
 //        val rdd3: RDD[Int] = rdd1.union(rdd2)
 //        val rdd3: RDD[Int] = rdd1.++(rdd2)
