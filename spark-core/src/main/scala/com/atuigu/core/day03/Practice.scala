@@ -35,7 +35,7 @@ object Practice {
         // 4. 按照key分组   RDD[(省份, List((广告1, count), (广告2, count), (广告3, count), .....))]
         val proAndAdsCountGroupedRDD: RDD[(String, Iterable[(String, Int)])] = proAdsAndCount.groupByKey
         
-        // 5. 排序取前三  RDD[(省份, List(广告1, 广告2, 广告3))]
+        // 5. 排序取前三  RDD[(省份, List((广告1, count), (广告2, count), (广告3, count)))]
         val res: RDD[(String, List[(String, Int)])] = proAndAdsCountGroupedRDD.map{
             case (pro, adsCountIt) => (pro, adsCountIt.toList.sortBy(-_._2).take(3))
         }/*.sortBy(_._1.toInt)*/
@@ -59,6 +59,6 @@ object Practice {
 => RDD[(省份, 广告), count))] map
 => RDD[(省份, (广告, count))]  groupBy
 => RDD[(省份, List((广告1, count), (广告2, count), (广告3, count), .....))]  => map (排序取3)
-=> RDD[(省份, List(广告1, 广告2, 广告3))]
+=> RDD[(省份, List((广告1, count), (广告2, count), (广告3, count)))]
 
 */
