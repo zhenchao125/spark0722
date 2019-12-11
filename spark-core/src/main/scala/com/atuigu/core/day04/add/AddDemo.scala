@@ -14,16 +14,19 @@ object AddDemo {
         val list1 = List(30, 50, 70, 60, 10, 20)
         val rdd1: RDD[Int] = sc.parallelize(list1, 2)
         
-        var a = 1
+        //        val acc: LongAccumulator = sc.longAccumulator("my1")
+        val acc: AvgAcc = new AvgAcc
+        sc.register(acc, "first")
+        rdd1.foreach(x => acc.add(x))
+        println(acc.value)
         
-        rdd1.foreach(x => a += 1)
-        println(a)
+        Thread.sleep(1000000)
         sc.stop()
-        
         
         
     }
 }
+
 /*
 共享变量的更改问题:
     累加器
