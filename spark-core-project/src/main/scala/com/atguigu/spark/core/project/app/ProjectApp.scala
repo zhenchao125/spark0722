@@ -15,8 +15,10 @@ object ProjectApp {
         val userVisitActionRDD: RDD[UserVisitAction] = readFromFile(sc, "c:/user_visit_action.txt")
         
         // 需求1:
-        CategoryTop10.statCategoryTop10(sc, userVisitActionRDD)
+        val cidsTop10 = CategoryTop10.statCategoryTop10(sc, userVisitActionRDD)
         
+        // 需求2:
+        CategoryTop10Session.calcTop10Session(sc, cidsTop10, userVisitActionRDD)
         sc.stop()
         
         

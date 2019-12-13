@@ -31,3 +31,9 @@ case class UserVisitAction(date: String,
                            pay_product_ids: String,
                            city_id: Long)
 
+
+
+case class CategoryCountInfo(categoryId: Long,
+                             clickCount: Long,
+                             orderCount: Long,
+                             payCount: Long)
