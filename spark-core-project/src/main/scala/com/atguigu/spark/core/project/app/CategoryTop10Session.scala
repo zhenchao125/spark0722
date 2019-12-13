@@ -138,7 +138,6 @@ object CategoryTop10Session {
         })
         top10SessionRDD.collect.foreach(println)
     }
-    
 }
 
 class CidPartitioner(num: Int, cids: List[Long]) extends Partitioner {
