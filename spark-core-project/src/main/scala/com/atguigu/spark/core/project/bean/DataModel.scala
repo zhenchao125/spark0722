@@ -32,8 +32,20 @@ case class UserVisitAction(date: String,
                            city_id: Long)
 
 
-
 case class CategoryCountInfo(categoryId: Long,
                              clickCount: Long,
                              orderCount: Long,
                              payCount: Long)
+
+
+case class CategorySession(categoryId: Long,
+                           sessionId: String,
+                           clickCount: Long) extends Ordered[CategorySession] {
+    override def compare(that: CategorySession): Int =
+    // == 0 表示元素重复, 无法存入新元素
+        if (this.clickCount <= that.clickCount) {
+            1
+        } else {
+            -1
+        }
+}

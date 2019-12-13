@@ -18,7 +18,14 @@ object ProjectApp {
         val cidsTop10 = CategoryTop10.statCategoryTop10(sc, userVisitActionRDD)
         
         // 需求2:
+        println("1-------")
         CategoryTop10Session.calcTop10Session(sc, cidsTop10, userVisitActionRDD)
+        println("2-------")
+        CategoryTop10Session.calcTop10Session_1(sc, cidsTop10, userVisitActionRDD)
+        println("3-------")
+        CategoryTop10Session.calcTop10Session_2(sc, cidsTop10, userVisitActionRDD)
+        println("4-------")
+        CategoryTop10Session.calcTop10Session_3(sc, cidsTop10, userVisitActionRDD)
         sc.stop()
         
         
