@@ -1,4 +1,4 @@
-package com.atguigu.sql
+package com.atguigu.sql.day01
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.{Dataset, SparkSession}
@@ -23,16 +23,3 @@ object RDD2DS {
         
     }
 }
-/*
-
-
-
-RDD->DS(DF)
-   现有样例类, 然后在RDD中存储样例类
-   rdd.toDS   (rdd.toDF)
-DS(DF) -> RDD
-    ds.rdd
-    (df.rdd)
- 
- 
- */

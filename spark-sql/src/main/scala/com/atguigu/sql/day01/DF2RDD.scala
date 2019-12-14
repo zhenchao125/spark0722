@@ -1,7 +1,6 @@
-package com.atguigu.sql
+package com.atguigu.sql.day01
 
-import org.apache.spark.rdd.RDD
-import org.apache.spark.sql.{DataFrame, Row, SparkSession}
+import org.apache.spark.sql.{DataFrame, SparkSession}
 
 /**
   * Author lzc
@@ -14,7 +13,6 @@ object DF2RDD {
             .master("local[*]")
             .appName("DF2RDD")
             .getOrCreate()
-        import spark.implicits._
         
         val df: DataFrame = spark.read.json("c:/users.json")
         df.printSchema()

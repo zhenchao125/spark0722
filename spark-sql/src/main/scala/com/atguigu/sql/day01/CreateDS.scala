@@ -1,4 +1,4 @@
-package com.atguigu.sql
+package com.atguigu.sql.day01
 
 import org.apache.spark.sql.{Dataset, SparkSession}
 

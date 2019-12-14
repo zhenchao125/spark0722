@@ -1,7 +1,6 @@
-package com.atguigu.sql
+package com.atguigu.sql.day01
 
-
-import org.apache.spark.sql.types._
+import org.apache.spark.sql.types.{IntegerType, StringType, StructField, StructType}
 import org.apache.spark.sql.{Row, SparkSession}
 
 /**
@@ -31,16 +30,3 @@ object RDD2DF_3 {
         spark.stop()
     }
 }
-
-
-/*
-RDD到df
-    1. 手动转换: 手动指定df中的列名
-        val df: DataFrame = rdd.toDF("age", "id")
-    2. 使用样例类进行转换
-        val df: DataFrame = usersRDD.toDF()
-        case class User(age: Int, name: String)
-    3. 代码api的方式:
-
-
- */
