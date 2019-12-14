@@ -29,7 +29,7 @@ object PageConversionApp {
             .countByKey()
         
         
-        // 2. 从一个页面到另外一个页面的跳转次数   (必须安装session进行分组)
+        // 2. 从一个页面到另外一个页面的跳转次数   (必须按照session进行分组)
         val actionGroupedRDD: RDD[(String, Iterable[UserVisitAction])] = userVisitActionRDD.groupBy(_.session_id)
         // RDD["1->2", "2->3"]
         val allTargetFlowRDD: RDD[String] = actionGroupedRDD.flatMap {
