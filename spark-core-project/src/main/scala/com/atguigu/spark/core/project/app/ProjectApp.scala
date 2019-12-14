@@ -14,7 +14,7 @@ object ProjectApp {
         val sc: SparkContext = new SparkContext(conf)
         val userVisitActionRDD: RDD[UserVisitAction] = readFromFile(sc, "c:/user_visit_action.txt")
         
-        // 需求1:
+        /*// 需求1:
         val cidsTop10 = CategoryTop10.statCategoryTop10(sc, userVisitActionRDD)
         
         // 需求2:
@@ -25,7 +25,8 @@ object ProjectApp {
         println("3-------")
         CategoryTop10Session.calcTop10Session_2(sc, cidsTop10, userVisitActionRDD)
         println("4-------")
-        CategoryTop10Session.calcTop10Session_3(sc, cidsTop10, userVisitActionRDD)
+        CategoryTop10Session.calcTop10Session_3(sc, cidsTop10, userVisitActionRDD)*/
+        PageConversionApp.statPageConversionRate(sc, userVisitActionRDD, "1,2,3,4,5,6,7")
         sc.stop()
         
         

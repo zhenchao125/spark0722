@@ -70,7 +70,6 @@ object CategoryTop10Session {
             // 打印, 写入到外部存储
             result.foreach(println)
             println("-----------------")
-            
         })
     }
     
