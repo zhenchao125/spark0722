@@ -21,7 +21,6 @@ object MySumDemo {
         spark.sql("select mySum(age) from user").show
         spark.close()
         
-        
     }
 }
 
