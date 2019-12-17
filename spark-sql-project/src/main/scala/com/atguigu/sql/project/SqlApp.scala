@@ -8,6 +8,7 @@ import org.apache.spark.sql.SparkSession
   */
 object SqlApp {
     def main(args: Array[String]): Unit = {
+        System.setProperty("HADOOP_USER_NAME", "atguigu")
         val spark: SparkSession = SparkSession
             .builder()
             .master("local[*]")
@@ -15,7 +16,7 @@ object SqlApp {
             .enableHiveSupport()
             .getOrCreate()
         import spark.implicits._
-        
+        spark.sparkContext.setLogLevel("error")
         spark.sql("use sparkpractice")
         
         spark.sql(
@@ -30,12 +31,14 @@ object SqlApp {
             """.stripMargin).createOrReplaceTempView("t1")
         
         
+        spark.udf.register("remark", new RemarkUDAF)
         spark.sql(
             """
               |select
               |    area,
               |    product_name,
-              |    count(*) ct
+              |    count(*) ct,
+              |    remark(t1.city_name) remark
               |from t1
               |group by area, product_name
             """.stripMargin).createOrReplaceTempView("t2")
@@ -46,6 +49,7 @@ object SqlApp {
               |    area,
               |    product_name,
               |    ct,
+              |    remark,
               |    rank() over(partition by area order by ct desc) rk
               |from t2
             """.stripMargin).createOrReplaceTempView("t3")
@@ -55,10 +59,13 @@ object SqlApp {
               |select
               |    area,
               |    product_name,
-              |    ct
+              |    ct,
+              |    remark
               |from t3
               |where rk <= 3
-            """.stripMargin).show
+            """.stripMargin).show(100, false)
+        
+        
         
         spark.close()
         
