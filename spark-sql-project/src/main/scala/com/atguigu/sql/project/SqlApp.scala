@@ -62,11 +62,11 @@ object SqlApp {
               |    remark
               |from t3
               |where rk <= 3
-            """.stripMargin)
-            //            .write.mode("append").saveAsTable("city_count")
-            .write.insertInto("city_count") // city_info必须提前存在
-        
-        spark.close()
+            """.stripMargin).coalesce(1)  // 默认两百个分区, 需要合并分区
+            .write.mode("overwrite").saveAsTable("city_count")
+            //            .write.insertInto("city_count") // city_info必须提前存在
+            
+            spark.close()
         
         
         

@@ -13,6 +13,7 @@
         <module>spark-core-project</module>
         <module>spark-sql</module>
         <module>spark-sql-project</module>
+        <module>spark-streaming</module>
     </modules>
     <dependencies>
         <dependency>
