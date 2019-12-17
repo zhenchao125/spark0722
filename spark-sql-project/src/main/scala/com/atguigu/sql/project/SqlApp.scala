@@ -15,7 +15,6 @@ object SqlApp {
             .appName("SqlApp")
             .enableHiveSupport()
             .getOrCreate()
-        import spark.implicits._
         spark.sparkContext.setLogLevel("error")
         spark.sql("use sparkpractice")
         
@@ -63,9 +62,9 @@ object SqlApp {
               |    remark
               |from t3
               |where rk <= 3
-            """.stripMargin).show(100, false)
-        
-        
+            """.stripMargin)
+            //            .write.mode("append").saveAsTable("city_count")
+            .write.insertInto("city_count") // city_info必须提前存在
         
         spark.close()
         
@@ -78,6 +77,7 @@ object SqlApp {
         //2. 显示
     }
 }
+
 /*
 各区域热门商品 Top3
 

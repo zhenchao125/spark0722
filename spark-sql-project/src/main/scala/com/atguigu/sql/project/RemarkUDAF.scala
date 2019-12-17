@@ -76,13 +76,14 @@ class RemarkUDAF extends UserDefinedAggregateFunction {
             case (city, count) => Remark(city, count.toDouble / total)
         }
         val resultList: List[Remark] = remarkTop2 :+ Remark("其他", 1 - remarkTop2.foldLeft(0D)(_ + _.rate))
-        //        val resultList: List[Remark] = remarkTop2 :+ Remark("其他", 1 - remarkTop2.reduce((r1, r2) => Remark("其他", r1.rate + r2.rate)).rate)
+        //                val resultList: List[Remark] = remarkTop2 :+ Remark("其他", 1 - remarkTop2.reduce((r1, r2) => Remark("其他", r1.rate + r2.rate)).rate)
         
         resultList.mkString(",")
     }
 }
-
-case class Remark(cityName: String, rate: Double) {
+case class Remark(cityName: String, rate: Double)
+{
     private val f = new DecimalFormat(".00%")
+    
     override def toString: String = s"$cityName: ${f.format(rate)}"
 }
