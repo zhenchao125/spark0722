@@ -25,6 +25,7 @@ object WordCount1 {
         
         // 4.启动流
         ssc.start()
+        
         // 5. 阻止当前线程退出
         ssc.awaitTermination()
         
