@@ -61,7 +61,6 @@ object DayAreaAdsTop {
             
         })
         
-        
         resultDSteam.print(10000)
     }
 }
