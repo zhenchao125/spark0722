@@ -14,6 +14,8 @@
         <module>spark-sql</module>
         <module>spark-sql-project</module>
         <module>spark-streaming</module>
+        <module>spark-realtime</module>
+        <module>moc-kdata</module>
     </modules>
     <dependencies>
         <dependency>
