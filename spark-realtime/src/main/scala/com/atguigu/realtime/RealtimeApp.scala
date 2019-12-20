@@ -1,6 +1,6 @@
 package com.atguigu.realtime
 
-import com.atguigu.realtime.app.DayAreaAdsTop
+import com.atguigu.realtime.app.{DayAreaAdsTop, LastHourPerMinutesCount}
 import com.atguigu.realtime.bean.AdsInfo
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.spark.streaming.StreamingContext
@@ -31,7 +31,8 @@ object RealtimeApp {
         })
         
         // 需求1: 每天每地区没广告的点击率的top3
-        DayAreaAdsTop.statDayAreaAdsTop3(adsInfoDSteam)
+//        DayAreaAdsTop.statDayAreaAdsTop3(adsInfoDSteam)
+        LastHourPerMinutesCount.statLastHourCount(adsInfoDSteam)
         
         ssc.start()
         ssc.awaitTermination()
